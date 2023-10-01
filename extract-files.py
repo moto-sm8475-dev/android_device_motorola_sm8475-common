@@ -19,6 +19,7 @@ from extract_utils.main import (
 namespace_imports = [
     'device/motorola/sm8475-common',
     'hardware/motorola',
+    'hardware/qcom-caf/common/libqti-perfd-client',
     'hardware/qcom-caf/sm8450',
     'hardware/qcom-caf/wlan',
     'vendor/qcom/opensource/commonsys/display',
@@ -72,6 +73,8 @@ blob_fixups: blob_fixups_user_type = {
     'vendor/bin/qcc-trd': blob_fixup().replace_needed(
         'libgrpc++_unsecure.so', 'libgrpc++_unsecure_prebuilt.so'
     ),
+    'vendor/etc/public.libraries.txt': blob_fixup()
+        .regex_replace('libqti-perfd-client.so\n', ''),
     'vendor/lib64/libmotext_inf.so': blob_fixup().remove_needed('libril.so'),
     'system_ext/priv-app/ims/ims.apk': blob_fixup().apktool_patch(
         'ims-patches'
