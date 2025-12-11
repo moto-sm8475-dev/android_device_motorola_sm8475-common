@@ -86,6 +86,9 @@ blob_fixups: blob_fixups_user_type = {
     'vendor/etc/media_codecs_cape.xml': blob_fixup().regex_replace(
         '.*media_codecs_(google_audio|google_c2|google_telephony|google_video|vendor_audio|dolby_audio).*\n', ''
     ),
+    'system_ext/lib64/vendor.qti.hardware.qccsyshal@1.2-halimpl.so': blob_fixup().replace_needed(
+        'libprotobuf-cpp-full.so', 'libprotobuf-cpp-full-21.7.so'
+    ),
 }
 
 module = ExtractUtilsModule(
